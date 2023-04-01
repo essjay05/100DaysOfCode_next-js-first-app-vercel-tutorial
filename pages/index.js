@@ -69,11 +69,14 @@ export default function Home({ allProjectsData }) {
         <section className={`${utilStyles.headingMd} ${utilStyles.padding1px}`}>
           <h2 className={utilStyles.headingLg}>Projects</h2>
           <ul className={utilStyles.list}>
-            {allProjectsData.map(({ id, attributes}) => {
-              <li className={utilStyles.listItem} key={`project-${id}`}>
-                <h3 className={utilStyles.headingSm}>{attributes.name}</h3>
-                <p>{attributes.description}</p>
-              </li>
+            {allProjectsData.map((project) => {
+              const { id, name, description } = project.attributes
+              return (
+                <li className={utilStyles.listItem} key={name}>
+                  <h3 className={utilStyles.headingSm}>{name}</h3>
+                  <p>{description}</p>
+                </li>
+              )
             })}
           </ul>
         </section>
