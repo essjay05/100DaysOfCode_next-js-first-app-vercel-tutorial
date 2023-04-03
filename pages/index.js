@@ -5,39 +5,21 @@ import Layout, { siteTitle } from '../components/layout';
 import utilStyles from '../styles/utils.module.css';
 
 // import { getSortedPostsData } from '../lib/posts';
+import { getProjectsData } from '../lib/projects';
 
 export async function getStaticProps() {
-  // const allPostsData = await getSortedPostsData();
-  // return {
-  //   props: {
-  //     allPostsData,
-  //   },
-  // };
-  const allProjectsData = await fetch('https://find-your-joy-app.onrender.com/api/projects')
-    .then((response) => response.json())
-    .then((data) => {
-      // console.log(data)
-      const apiProjectsData = data
-      // console.log('fetch apiProjectsData')
-      // console.log(apiProjectsData)
-      return apiProjectsData.data
-    })
-    .catch(err => console.error(err))
+  const projectsData = await getProjectsData()
+  const allProjectsData = projectsData.data
+  
   return {
     props: {
-      allProjectsData,
-    },
-  };
-}
+      allProjectsData
+    }
+  }
 
-export async function getApiStaticProps() {
-  
 }
 
 export default function Home({ allProjectsData }) {
-
-  // console.log('allProjectsData')
-  // console.log(allProjectsData)
 
   return (
     <Layout home>
