@@ -16,10 +16,10 @@ export async function getStaticProps() {
   const allProjectsData = await fetch('https://find-your-joy-app.onrender.com/api/projects')
     .then((response) => response.json())
     .then((data) => {
-      console.log(data)
+      // console.log(data)
       const apiProjectsData = data
-      console.log('fetch apiProjectsData')
-      console.log(apiProjectsData)
+      // console.log('fetch apiProjectsData')
+      // console.log(apiProjectsData)
       return apiProjectsData.data
     })
     .catch(err => console.error(err))
@@ -35,21 +35,9 @@ export async function getApiStaticProps() {
 }
 
 export default function Home({ allProjectsData }) {
-  
-  // const [ projects, setProjects ] = useState(null)
 
-  // console.log('projects')
-  // console.log(projects)
-
-  // useEffect(() => {
-  //   const apiResults = getApiStaticProps()
-  //   setProjects(apiResults)
-  //   console.log('apiResults in useEffect')
-  //   console.log(apiResults)
-  // }, [])
-
-  console.log('allProjectsData')
-  console.log(allProjectsData)
+  // console.log('allProjectsData')
+  // console.log(allProjectsData)
 
   return (
     <Layout home>
