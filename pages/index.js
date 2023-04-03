@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 import Head from 'next/head';
 import Link from 'next/link';
-import Layout, { siteTitle } from '../components/layout';
+import Layout, { siteTitle } from '../components/Layout';
 import utilStyles from '../styles/utils.module.css';
 
 // import { getSortedPostsData } from '../lib/posts';
@@ -9,17 +9,22 @@ import { getProjectsData } from '../lib/projects';
 
 export async function getStaticProps() {
   const projectsData = await getProjectsData()
-  const allProjectsData = projectsData.data
+  // console.log('index.js getStaticProps projectsData:')
+  // console.log(projectsData)
+  // const allProjectsData = projectsData.data
   
   return {
     props: {
-      allProjectsData
+      // allProjectsData
+      projectsData
     }
   }
 
 }
 
 export default function Home({ allProjectsData }) {
+  // console.log('allProjectsData')
+  // console.log(allProjectsData)
 
   return (
     <Layout home>
@@ -40,10 +45,10 @@ export default function Home({ allProjectsData }) {
           <h2 className={utilStyles.headingLg}>Projects</h2>
           <ul className={utilStyles.list}>
             {allProjectsData.map((project) => {
-              const { id, name, description } = project.attributes
+              const { name, description } = project.attributes
               return (
                 <li className={utilStyles.listItem} key={name}>
-                  <h3 className={utilStyles.headingSm}>{name}</h3>
+                  <Link href={`/posts/${project.id}`}><h3 className={utilStyles.headingSm}>{name}</h3></Link>
                   <p>{description}</p>
                 </li>
               )
